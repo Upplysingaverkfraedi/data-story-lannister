@@ -2,7 +2,10 @@
 title: "Mælaborð - Ísfólkið"
 author: "Lannister"
 date: "2024-10-20"
-output: html_document
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
