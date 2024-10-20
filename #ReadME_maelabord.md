@@ -10,6 +10,9 @@ Helstu niðurstöður úr mælaborðinu voru að Ingibjörg Jónsdóttir þýddi
   
 - Fyrir **Windows** er hægt að sækja forritið Power BI í Microsoft Store.
 
+# Sækja myndir
+Til að fá myndir af gröfunum í rmd skýrslunni þarf að hlaða þeim niður í tölvuna og breyta path hlekknum sem er í skýrslunni. 
+
 # Strúktur
 Möppustrúkturinn fyrir verkefnið er eftirfarandi og sýnir gagnasafnið sem var unnið með og rmd skránni af skýrslunni sem og README.md: 
 ```bash
@@ -21,8 +24,6 @@ Möppustrúkturinn fyrir verkefnið er eftirfarandi og sýnir gagnasafnið sem v
 
 # Hvernig á að opna .pbic skrána til að skoða mælaborðið
 Hægt er að opna skrána inná Github: [Sameiginleg_gröf](https://github.com/Upplysingaverkfraedi/data-story-lannister)
-
-
 
 # Keyrsla
 Þar sem við notuðumst við PowerBI en ekki R eða Python, er enginn kóði. Það eina sem þarf að gera er ýta á mælaborðið inná Github undir *sameiginleg_gröf*.
