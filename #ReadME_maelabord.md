@@ -12,14 +12,15 @@ Helstu niðurstöður úr mælaborðinu voru að Ingibjörg Jónsdóttir þýddi
 
 # Strúktur
 Möppustrúkturinn fyrir verkefnið er eftirfarandi og sýnir gagnasafnið sem var unnið með og rmd skránni af skýrslunni sem og README.md: 
+```bash
 ├── data/ 
  └── isfolkid.db  
 ── skýrsla.rmd 
 ── README.md   
-
+```
 
 # Hvernig á að opna .pbic skrána til að skoða mælaborðið
-Hægt er að opna skrána inná Github: ["sameiginleg_gröf"] (https://github.com/Upplysingaverkfraedi/data-story-lannister)
+Hægt er að opna skrána inná Github: [Sameiginleg_gröf](https://github.com/Upplysingaverkfraedi/data-story-lannister)
 
 
 
