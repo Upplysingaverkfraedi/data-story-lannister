@@ -1,0 +1,117 @@
+---
+title: "Mælaborð - Ísfólkið"
+author: "Lannister"
+date: "2024-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+# 1. Verkefnalýsing:
+
+Í þessu verkefni var kafað dýpra í gagnagrunninn úr fyrra verkefni (sql) um ísfólkið eftir Margit Sandemo. Hanna átti mælaborð með mismunandi gröfum sem lýstu sambandi gagna úr gagnagrunninum isfolkid.db. Þar mátti finna upplýsingar sem notaðar voru úr neðantöldum töflum *alvarpið*, *books*, *children*, *family*, *marriage*, *special_events* og *storytel_isfolkid* .
+
+# 2. Lýsing á gagnaöflun:
+
+### Windows:
+
+Þar sem unnið var með gögnum úr SQL verkefninu fyrr á önninni, þá er hægt að sækja gagnagrunninn í skránni `isfolkid.db`, og hlaða henni niður í tölvuna með eftirfarandi hlekk:
+
+<https://github.com/Upplysingaverkfraedi/sqlite-lannister/blob/main/data/isfolkid.db>
+
+Notast var við Power BI til að vinna með gögnin. Til að hlaða því niður til notkunar skal framkvæma eftirfarandi skref:
+
+1.  Fyrst þarf að hlaða niður SQLite ODBCn(x64 bit, ekki 32) inn á tölvuna
+2.  Opna ODBC og smella á *Add...*
+3.  Velja SQLite3 ODBC Driver
+4.  Velja skrána isfolkid.db (.db file sem er vistað á tölvuna frá fyrra verkefni)
+5.  Opna Power BI
+6.  Búa til nýtt report
+7.  Smella á *Get data -\> more -\> ODBC*
+8.  Þá ætti skráin að birtast, ýta á Windows (ekki vera inn á database) og halda áfram
+9.  Þá opnast Navigator og allar töflur gagngrunnsins birtast til hægri, tilbúnar til notkunnar
+
+### MacOS:
+
+Þar sem að Power BI er Microsoft forrit þá er ekki hægt að nota það á sama máta og á Windows. Einfaldasta leiðin er að nota vefútgáfuna á [app.powerbi.com](app.powerbi.com) og þeir sem eru í háskólanum geta nýtt sér það í gegnum háskóla Office pakkann. Þar er hægt að opna skrár sem hafa verið vistaðar á tölvuna.
+
+# 3. Gagnavinnsla:
+
+Inná PowerBI má sjá allar töflur í Data og þaðan hægt að draga upplýsingar úr töflunum inn á gröf að eigin vali. Eftir að valið er hvaða dálka innan töflunnar notast er við, þá er næst hægt að velja á milli ýmissa grafa sem Power BI hefur upp á að bjóða en einnig hægt að ýta á more og hlaða niður fleiri tegundir grafa. Dæmi um gröf sem eru í boði eru súlurit, línurit, punktarit, kökurit o.s.frv. Að auki býður PowerBI upp á hluti eins og kortlagningu og ýmsar töflur en þær voru ekki notaðar við gerð þessa verkefnis. Þegar unnið er með gröfin er hægt að velja hvaða dálkur úr töflu fer á *x-ás*, *y-ás* eða *Legend*, *Values* og *Size*. Síðan er hægt að sérhanna gröfin eins og að velja liti, setja titil á grafið og ásanna, setja inn línur fyrir miðgildi, útgildi og meðaltal sem dæmi má nefna. Þegar mismunandi gröf eru sett á sömu blaðsíðuna inná PowerBI, er hægt að ýta á graf og sjá hvernig það tengist hinum gröfunum, mælum með að skoða mælaborðið á þann hátt.
+
+# 4. Markverðustu Niðurstöðurnar:
+
+Helstu niðurstöðurnar voru að Ingibjörg Jónsdóttir þýddi töluvert fleiri bækur en Ingibjörg Briem. Einnig kom í ljós að Lind er algengasta persóna sögunnar og að hlutfall góðra og slæmra af þeim sem eru ‘chosen-ones’ er það sama sem kom okkur á óvart. Þegar útgáfur bókanna voru skoðaðar var forvitnilegt að sjá að höfundurinn gefur út að meðaltali 5.8 bækur á ári og gefur hún út flestar bækur í febrúar, apríl og júní. Skemmtilegt var líka að sjá að fjöldi umsagna á hljóðbókunum á Storytel hríðfellur eftir því sem lengra er frá útgáfu bókanna. Fjöldinn fer jafnt og þétt lækkandi eftir því sem tíminn líður og er það líklega út af minnkandi fjölda hlustenda. Áhugavert voru líka þær niðurstöður að lengri bækur (með fleiri blaðsíðum) fá að meðaltali aðeins hærri einkunnir á Storytel. Það gæti verið smá misvísandi þar sem að allar einkunnir bókanna eru á stuttu bili, 4.1-4.6. 
+
+# 5. Mælaborðið
+
+Tilgangur mælaborðsins var að fá heildarsýn yfir bókabálk ísfólksins og ná að kynnast örlítið betur sögu þeirra. Við vildum sérstaklega skoða samband milli bókanna, þýðenda og upplýsingar um hljóðbækurnar á Storytel. Fjöldi þýddra kafla og hlutfall þýddra bóka miðað við höfund var skoðað sem og algengustu persónurnar í bókunum og hlutfall ´Chosen Ones´. Einnig var útgáfudagsetning bókanna skoðaður, þ.m.t. algengasta árið og mánuðurinn sem bók var gefin út. Borin var fjölda umsagna á hverri hljóðbók á Storytel saman við útgáfutíma og lengd þeirra. Að lokum voru einkunnagjafir bókanna skoðaðar eftir lengd þeirra, til að sjá hvort að lengri bækur væru að fá hærri einkunnir.
+
+Hér að neðan er farið nánar í hvert graf fyrir sig og útskýrt betur samband milli mismunandi upplýsinga. 
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 1.png")
+```
+
+Á þessu grafi má sjá fjölda kafla (y-ás) sem hvor þýðandinn þýddi; Ingibjörg Briem (ljósblá) og Ingibjörg Jónsdóttir (dökkblá) yfir árin (x-ás) frá 1982 til 1989.
+
+**Ingibjörg Jónsdóttir**: Byrjaði að þýða Ísfólkið árið 1982 og voru kaflarnir 111 talsins en fjöldinn fór niður á við eftir það. Fjöldi kafla jókst ekki fyrr en eftir 1984 og náði hápunkti árið 1985 þegar kaflarnir voru 112 talsins . Hún hætti að þýða bækurnar árið 1986 þar sem hún lést það ár. 
+
+**Ingibjörg Briem**: Tók við þýðingu bókanna árið 1986 og þýddi hún fyrst 14 kafla en og jókst jókst fjöldi kafla eftir það en náði aldrei fjölda þýddra bóka Ingibjargar Jónsdóttur. Hápunktur Ingibjargar Briem var árið 1987 með 84 kafla en fjöldinn minnkaði eftir það.
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Tafla 1.png")
+```
+
+**Samantekt:** Ingibjörg Jónsdóttir þýddi fleiri kafla eða 455 samtals og yfir lengra tímabil (4 ár) en Ingibjörg Briem þýddi 197 kafla samtals yfir þriggja ára skeið. 
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 2.png")
+```
+
+Þetta kökurit sýnir hlutfall þýddra bóka milli Ingibjargar Jónsdóttur og Ingibjargar Briem. Þá sést að Ingibjörg Jónsdóttir hafi þýtt 33 bækur (um 70%) en Ingibjörg Briem aðeins 14 bækur (um 30%). Ef ýtt er á dökkbláa partinn, ætti fyrra línuritið að breytast og sýna aðeins Ingibjörgu Jónsdóttur. Sömuleiðis ef ýtt er á ljósbláa partinn, ætti ljósbláa línan aðeins að sjást í línuritinu.
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 3.png")
+```
+
+Á þessari mynd má sjá á skemmtilegan hátt hvaða persónur komu oftast fram í bókabálkinum. Því stærra letur á nafni, því oftar kom sú persóna fram í bókunum. Eins og sést á þessari mynd kom “Lind” og “Heikir” oftast fram. Einnig er hægt að ýta á nafn eins og Lind, og þá er gaman að sjá hvernig hin gröfin breytast. Línuritið sýnir aðeins dökkbláu línuna sem segir okkur að þau skipti sem Lind kemur fram, er í þeim köflum sem Ingibjörg Jónsdóttir þýddi. 
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 4.png")
+```
+
+Hér sést hlutfall þeirra sem eru “chosen one”. Þá er langstærsti hluti fólksins hvorki gott né vont (skv. gagnagrunni), 11.8% eru góðir, 11.18% eru vondir og aðeins 2.48% hafa skipt úr því að vera góðir yfir í að vera vondir eða öfugt. 
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 5.png")
+```
+
+Á þessu stöplariti má sjá fjölda útgefna bóka á árunum 1982-1989. Þá sést að rithöfundur bókanna, Margit, hafi gefið flestar bækur sínar út árin 1984 og 1985, 8 bækur hvort ár. Meðaltal bóka sem hún gaf út á ári var 5.88 bækur.
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 6.png")
+```
+
+Hér má sjá fjöldi bóka á mánuðum. Kemur í ljós að hún hafi oftast gefið út bækur sínar í febrúar, apríl og júní. Mjög skemmtilegt að sjá mynstrið í grafinu þar sem önnur hver súla er lægri sem gæti þýtt að þá hafi hún verið að skrifa á fullu. Maí mánuðurinn er lang-minnstur og gæti verið að þá sé ekki góður tími að gefa út bækur.  
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 7.png")
+```
+
+Á grafinu fyrir ofan má sjá tengingar milli fjölda umsagna hljóðbóka á Storytel miðað við hverja bók og hvenær hún kom út. X-ásinn sýnir útgáfudag fyrir hverja hljóðbók, frá elstu yfir í nýjustu. Y-ásinn sýnir fjölda umsagna sem hljóðbókin fékk á Storytel. Einnig má sjá gulu línuna sem sýnir fjölda umsagna á hljóðbókunum á Storytel. Það má sjá hvernig hún byrjar hátt í 1104 umsögnum en minnkar svo hratt þar til að hún jafnast út í um það bil 400-500 umsögnum. Svo má sjá fjölda blaðsíðna á hverri bók á bleiku súlunum. Lengd bókanna er nokkuð stöðug en þær verða hægt og rólega aðeins lengri þegar líður á, en munurinn er þó alls ekki mikill. Til þess að auka sýnileika þá eru tvær rauðar punktalínur sem sýna breytingu fyrir hvorn þáttinn á grafinu. Út frá þessari mynd má álykta ýmislegt um tengingar þeirra. Það má segja að þegar það leið á útgáfu bókanna á Storytel þá hafi áhugi bókanna minnkað með tímanum, jafnvel þó að við lítum framhjá útblásnum umsögnum á fyrstu bókunum. Það gæti verið vegna þess að bækurnar urðu lengri og/eða áhuginn á þeim hafi bara hreinlega minnkað eftir því sem leið á söguheiminn. Þetta gæti gefið til kynna minnkandi vinsældir nýlegra bóka eða að bækur sem voru gefnar út fyrr hafi haft meiri tíma til að safna umsögnum. Aftur á móti virðist lengd bókar ekki hafa augljós áhrif á fjölda umsagna þar sem fjöldi blaðsíðna helst stöðugur á meðan fjöldi umsagna minnkar.
+
+```{r}
+knitr::include_graphics("C:/Users/bened/Downloads/Graf 8.png")
+```
+
+Þetta graf sýnir tengslin milli fjölda kafla, lengdar bóka (fjöldi blaðsíðna) og einkunna á Storytel. Það er uppsett sem dreifirit þar sem hver punktur táknar eina bók. X-ásinn sýnir fjölda blaðsíðna, sem er merkt sem „Fjöldi bls.“. Því lengra til hægri sem punkturinn er á x-ásnum, því lengri er bókin í fjölda blaðsíðna. Y-ásinn sýnir einkunnir á Storytel, sem eru merktar sem „Einkunn á Storytel“. Því hærra sem punkturinn er á y-ásnum, því hærri einkunn hefur bókin fengið. Litur punktanna stendur fyrir fjölda kafla í bókunum, og er litaskýringin efst í grafinu. Til dæmis merkir blár punktur bækur með 10 kafla, en fjólubláir punktar merkja bækur með 15 kafla. Með því að horfa á litaskýringuna er hægt að sjá hvernig bækurnar dreifast út frá fjölda kafla. Punktalínan í grafinu sýnir tengsl milli fjölda blaðsíðna og einkunna. Það sýnir að eftir því sem fjöldi blaðsíðna eykst, þá hækka einkunnir einnig, þó ekki mjög sterkt samband sé til staðar þar sem að allar bækurnar fá einkun á litlu bili 4,1-4,6. Samkvæmt þessu grafi má álykta að lengri bækur (með fleiri blaðsíðum) fá að meðaltali aðeins hærri einkunnir. Hins vegar virðist fjöldi kafla ekki hafa augljós áhrif á einkunnir, þar sem bækur með mismunandi fjölda kafla eru dreifðar yfir allan y-ásinn, frá lægstu til hæstu einkunna en þar má einnig nefna að flestar bækurnar eru með sama fjölda kafla, 14.
+
+# 6. Lokaorð
+
+Mælaborðið er því dýrmætt tæki til að skoða gögnin á sjónrænan hátt, og veitir bæði áhugaverðar upplýsingar og nýja sýn á gögn eins og í þessu tilfelli Söguna um Ísfólkið, þýðendur hennar og viðbrögð lesenda. PowerBI reyndist vera frábært verkfæri, auðvelt að læra á það og gaman að leika sér að búa til mismunandi gröf. 
+
+Að lokum, ástæðan fyrir því af hverju við völdum þetta efni var því okkur fannst bækurnar, 47 talsins, svo áhugaverðar og skemmtilegt hversu mikilla vinsælda þær náðu. Ótrúlegt að enginn af okkur vissi um þessar bækur fyrr en núna og vorum við það áhugasöm um efnið að við hlustuðum aðeins á podcastið hjá Ískisum, mjög fróðlegt og skemmtilegt. 
